@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vegetable Market - Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #28a745;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 500px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      background: #28a745;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover {
+      background: #1e7e34;
+    }
+    .hidden {
+      display: none;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .product {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 15px;
+      text-align: center;
+      background: #fafafa;
+    }
+    .cart {
+      margin-top: 30px;
+      padding: 15px;
+      background: #eef;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Vegetable Market</h1>
+    <p>Fresh Vegetables at Your Fingertips</p>
+  </header>
+
+  <!-- Login Form -->
+  <div class="container" id="loginPage">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Enter Username">
+    <input type="password" id="password" placeholder="Enter Password">
+    <button onclick="login()">Login</button>
+  </div>
+
+  <!-- Market Page -->
+  <div class="container hidden" id="marketPage">
+    <h2>Available Vegetables</h2>
+    <div class="products">
+      <div class="product">
+        <h3>Tomatoes</h3>
+        <p>₹40 per kg</p>
+        <button onclick="addToCart('Tomatoes', 40)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <h3>Potatoes</h3>
+        <p>₹30 per kg</p>
+        <button onclick="addToCart('Potatoes', 30)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <h3>Carrots</h3>
+        <p>₹50 per kg</p>
+        <button onclick="addToCart('Carrots', 50)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <h3>Onions</h3>
+        <p>₹35 per kg</p>
+        <button onclick="addToCart('Onions', 35)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <h3>Spinach</h3>
+        <p>₹25 per bunch</p>
+        <button onclick="addToCart('Spinach', 25)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <h3>Cauliflower</h3>
+        <p>₹45 per piece</p>
+        <button onclick="addToCart('Cauliflower', 45)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Cart -->
+    <div class="cart" id="cart">
+      <h2>Your Cart</h2>
+      <ul id="cartItems"></ul>
+      <p><strong>Total: ₹<span id="total">0</span></strong></p>
+    </div>
+
+    <!-- Customer Details Form -->
+    <div class="container" id="customerForm" style="margin-top:20px;">
+      <h2>Customer Details</h2>
+      <form id="detailsForm">
+        <input type="text" id="custName" placeholder="Full Name" required>
+        <input type="tel" id="custPhone" placeholder="Phone Number" required>
+        <input type="email" id="custEmail" placeholder="Email" required>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MarketMind AI</title>
+</head>
+<body>
+  <h1>MarketMind: AI Sales & Marketing Intelligence</h1>
+  <input id="query" type="text" placeholder="Enter market query..." />
+  <button onclick="sendQuery()">Analyze</button>
+  
+  <div id="result"></div>
+
+  <script>
+    async function sendQuery() {
+      const query = document.getElementById("query").value;
+      const response = await fetch("/analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query })
+      });
+      const data = await response.json();
+      document.getElementById("result").innerHTML =
+        `<p><strong>Sentiment:</strong> ${data.sentiment}</p>
+         <p><strong>Recommendation:</strong> ${data.recommendation}</p>`;
+    }
+  </script>
+</body>
+</html>

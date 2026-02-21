@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MarketMind – AI Sales & Marketing Intelligence</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #007bff;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    textarea {
+      width: 100%;
+      height: 120px;
+      margin-bottom: 15px;
+      padding: 10px;
+      font-size: 14px;
+    }
+    button {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .response {
+      margin-top: 20px;
+      padding: 15px;
+      background: #eef;
+      border-radius: 6px;
+      display: none;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #f4f6f8;
+      color: #555;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MarketMind</h1>
+    <p>Generative AI–Powered Sales & Marketing Intelligence Platform</p>
+  </header>
+
+  <div class="container">
+    <h2>Ask MarketMind</h2>
+    <p>Enter your sales or marketing query below:</p>
+    <textarea id="query" placeholder="e.g., Suggest a campaign for a new product launch"></textarea>
+    <button onclick="sendQuery()">Generate Insights</button>
+    <div id="response" class="response"></div>
+  </div>
+
+  <footer>
+    <p>© 2026 MarketMind | Powered by Generative AI</p>
+  </footer>
+
+  <script>
+    async function sendQuery() {
+      const query = document.getElementById("query").value;
+      const responseBox = document.getElementById("response");
+
+      if (!query.trim()) {
+        alert("Please enter a query first!");
+        return;
+      }
+
+      // Example: Call a backend API (replace URL with your FastAPI endpoint)
+      try {
+        const res = await fetch("http://localhost:8000/generate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query })
+        });
+
+        const data = await res.json();
+
+        responseBox.style.display = "block";
+        responseBox.innerHTML = "<strong>AI Insights:</strong><br>" + data.insight;
+      } catch (error) {
+        // Fallback simulated response if backend not connected
+        const simulatedResponse = "AI Suggestion: For your query '" + query +
+          "', MarketMind recommends a personalized campaign using social media ads, targeted emails, and predictive lead scoring.";
+
+        responseBox.style.display = "block";
+        responseBox.innerHTML = "<strong>AI Insights:</strong><br>" + simulatedResponse;
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MarketMind Front-End</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f6f8; padding: 20px; }
+    .container { max-width: 700px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; }
+    textarea { width: 100%; height: 120px; margin-bottom: 15px; }
+    button { background: #007bff; color: #fff; border: none; padding: 10px 20px; cursor: pointer; }
+    .response { margin-top: 20px; padding: 15px; background: #eef; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>MarketMind Dashboard</h1>
+    <p>Enter your sales/marketing query:</p>
+    <textarea id="query"></textarea>
+    <button onclick="sendQuery()">Generate Insights</button>
+    <div id="response" class="response" style="display:none;"></div>
+  </div>
+
+  <script>
+    async function sendQuery() {
+      const query = document.getElementById("query").value;
+      const responseBox = document.getElementById("response");
+
+      // Simulated backend call
+      const res = await fetch("backend.html?query=" + encodeURIComponent(query));
+      const text = await res.text();
+
+      responseBox.style.display = "block";
+      responseBox.innerHTML = "<strong>AI Insights:</strong><br>" + text;
+    }
+  </script>
+</body>
+</html>
